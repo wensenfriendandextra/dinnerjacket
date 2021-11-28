@@ -128,7 +128,7 @@ class Dashboard extends Component {
       })
     })
   }
-
+  
   // get default periods if not authenticated
   getDefaultPeriods(getTransitions) {
     let date = new Date()
@@ -178,6 +178,11 @@ class Dashboard extends Component {
     }
   }
 
+  getDefaultBellForDay(day) {
+    // TODO: get default bell from API
+    console.error("Dashboard.getDefaultBellForDay not implemented (from dinnerjacket/app/Components/Dashboard/Dashboard.js)");
+    throw 
+  }
   getDefaultBells() {
     let date = new Date()
     let returnData = []
@@ -199,51 +204,11 @@ class Dashboard extends Component {
       // return bells for monday/tuesday
       case 6:
       case 0:
-      case 1:
-      case 2: returnData = [{bell: 'Roll Call',  time: '09:00'},
-                            {bell: 'Period 1',   time: '09:05'},
-                            {bell: 'Transition', time: '10:05'},
-                            {bell: 'Period 2',   time: '10:10'},
-                            {bell: 'Lunch 1',    time: '11:10'},
-                            {bell: 'Lunch 2',    time: '11:30'},
-                            {bell: 'Period 3',   time: '11:50'},
-                            {bell: 'Transition', time: '12:50'},
-                            {bell: 'Period 4',   time: '12:55'},
-                            {bell: 'Recess',     time: '13:55'},
-                            {bell: 'Period 5',   time: '14:15'},
-                            {bell: 'End of Day', time: '15:15'}]
-
-      // return bells for wednesday/thursday
-      case 3:
-      case 4: returnData = [{bell: 'Roll Call',  time: '09:00'},
-                            {bell: 'Period 1',   time: '09:05'},
-                            {bell: 'Transition', time: '10:05'},
-                            {bell: 'Period 2',   time: '10:10'},
-                            {bell: 'Recess',     time: '11:10'},
-                            {bell: 'Period 3',   time: '11:30'},
-                            {bell: 'Lunch 1',    time: '12:30'},
-                            {bell: 'Lunch 2',    time: '12:50'},
-                            {bell: 'Period 4',   time: '13:10'},
-                            {bell: 'Transition', time: '14:10'},
-                            {bell: 'Period 5',   time: '14:15'},
-                            {bell: 'End of Day', time: '15:15'}]
-
-      // return bells for friday
-      case 5: returnData = [{bell: 'Roll Call',  time: '09:25'},
-                            {bell: 'Period 1',   time: '09:30'},
-                            {bell: 'Transition', time: '10:25'},
-                            {bell: 'Period 2',   time: '10:30'},
-                            {bell: 'Recess',     time: '11:25'},
-                            {bell: 'Period 3',   time: '11:45'},
-                            {bell: 'Lunch 1',    time: '12:40'},
-                            {bell: 'Lunch 2',    time: '13:00'},
-                            {bell: 'Period 4',   time: '13:20'},
-                            {bell: 'Transition', time: '14:15'},
-                            {bell: 'Period 5',   time: '14:20'},
-                            {bell: 'End of Day', time: '15:15'}]
+      case 1: returnData = 1; break;
+      default: returnData = day; break;
 
     }
-    return returnData
+    return this.getDefaultBellForDay(returnData)
   }
   
   addMorningClass(timetable, periods, bells) {
